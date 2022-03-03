@@ -17,6 +17,11 @@ public class Grille {
 		return taille;
 	}
 	
+	@Override
+	public String toString() {
+		return ""+this.nom+"   "+this.taille;
+	}
+	
 	
 	
 }

@@ -7,18 +7,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.SQLException;
+
 import model.Grille;
+import model.VitesseExecution;
 
-public class GrilleDao extends Dao {
+public class VitesseExecutionDao extends Dao{
 
-	public void save(Grille grille) {
+	public void save(VitesseExecution vitesseExecution) {
 		Connection connection = getConnection();
 		PreparedStatement statement = null;
 		try {
-			String sql = "insert into Grille (nom,taille) values (?,?)";
+			String sql = "insert into VitesseExecution (nom,vitesse) values (?,?)";
 			statement = connection.prepareStatement(sql);
-			statement.setString(1, grille.getNom());
-			statement.setString(2, grille.getTaille());
+			statement.setString(1, vitesseExecution.getNom());
+			statement.setInt(2, vitesseExecution.getVitesse());
 			System.out.println(sql);
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -29,15 +31,15 @@ public class GrilleDao extends Dao {
 		}
 	}
 	
-	public Grille getFromNom(String nom) {
+	public VitesseExecution getFromNom(String nom) {
 		Connection connection = getConnection();
 		Statement statement=null;
-		// TODO
 		try {
 			statement = connection.createStatement();
-			ResultSet result = statement.executeQuery("select * from Grille where nom = '" + nom+"'");
+			ResultSet result = statement.executeQuery("select * from VitesseExecution where nom = '" + nom+"'");
+			
 			if (result.next()) {
-				return buildGrilleFromRow(result);
+				return buildVitesseExecutionFromRow(result);
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -48,15 +50,15 @@ public class GrilleDao extends Dao {
 		return null;
 	}
 	
-	public List<Grille> getAll() {
-		List<Grille> all = new ArrayList<>();
+	public List<VitesseExecution> getAll() {
+		List<VitesseExecution> all = new ArrayList<>();
 		Connection connection = getConnection();
 		Statement statement=null;
 		try {
 			statement = connection.createStatement();
-			ResultSet result = statement.executeQuery("select * from Grille order by nom");
+			ResultSet result = statement.executeQuery("select * from VitesseExecution order by vitesse");
 			while (result.next()) {
-				all.add(buildGrilleFromRow(result));
+				all.add(buildVitesseExecutionFromRow(result));
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -68,9 +70,7 @@ public class GrilleDao extends Dao {
 	}
 	
 	
-	private Grille buildGrilleFromRow(ResultSet result) throws SQLException {
-		return new Grille(result.getString(1), result.getString(2));
+	private VitesseExecution buildVitesseExecutionFromRow(ResultSet result) throws SQLException {
+		return new VitesseExecution(result.getString(1), result.getInt(2));
 	}
-	
-	
 }
