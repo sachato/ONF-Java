@@ -9,6 +9,8 @@ public class VitesseExecution {
 		this.nom = nom;
 		this.vitesse = vitesse;
 	}
+	
+	
 	public String getNom() {
 		return nom;
 	}

@@ -21,7 +21,7 @@ public class SimulationDao extends Dao{
 			statement = connection.prepareStatement(sql);
 			statement.setString(1, simulation.getNom());
 			statement.setInt(2, simulation.getNombrePasMax());
-			statement.setInt(3, simulation.getVitesseExecution());
+			statement.setString(3, simulation.getVitesseExecution());
 			statement.setString(4, simulation.getCellules());
 			statement.setInt(5, simulation.getNombreDeTours());
 			statement.setString(6, simulation.getGrille());
@@ -86,7 +86,7 @@ public class SimulationDao extends Dao{
 			//((PreparedStatement) statement).setInt(1, superhero.getId());
 			statement.setString(1, simulation.getNom());
 			statement.setInt(2, simulation.getNombrePasMax());
-			statement.setInt(3, simulation.getVitesseExecution());
+			statement.setString(3, simulation.getVitesseExecution());
 			statement.setString(4, simulation.getCellules());
 			statement.setInt(5, simulation.getNombreDeTours());
 			statement.setString(6, simulation.getGrille());
@@ -103,8 +103,8 @@ public class SimulationDao extends Dao{
 	
 	private Simulation buildSimulationFromRow(ResultSet result) throws SQLException {
 
-		return new Simulation(result.getInt(1), result.getString(2), result.getString(3),
-				result.getInt(4), result.getInt(5), result.getString(6), result.getInt(7));
+		return new Simulation(result.getInt(1), result.getString(2),
+				result.getInt(3), result.getString(4), result.getString(5), result.getInt(6), result.getString(7));
 	}
 
 }

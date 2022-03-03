@@ -8,13 +8,13 @@ public class Simulation {
 	private String nom;
 	private String grille;
 	private int nombrePasMax;
-	private int vitesseExecution;
+	private String vitesseExecution;
 	private String cellules;
 	private int nombreDeTours;
 	
 	
-	public Simulation(int id,String nom, String grille, int nombrePasMax, int vitesseExecution, String cellules,
-			int nombreDeTours) {
+	public Simulation(int id,String nom,  int nombrePasMax, String vitesseExecution, String cellules,
+			int nombreDeTours, String grille) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -44,7 +44,7 @@ public class Simulation {
 	}
 
 
-	public int getVitesseExecution() {
+	public String getVitesseExecution() {
 		return vitesseExecution;
 	}
 
@@ -62,7 +62,7 @@ public class Simulation {
 	public void wantToSave(Simulation simulation, int id) {
 		SimulationDao simulationDao = new SimulationDao();
 		Simulation checkIfExist = simulationDao.findById(id);
-		if (checkIfExist.equals(null)) {
+		if (checkIfExist == null) {
 			simulationDao.save(simulation);
 		}
 		else {
