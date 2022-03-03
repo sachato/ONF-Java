@@ -1,39 +1,46 @@
 package model;
 
+import services.dao.SimulationDao;
+
 public class Simulation {
 	
+	private int id;
 	private String nom;
-	private Grille grille;
-	private int nombreDePasMax;
+	private String grille;
+	private int nombrePasMax;
 	private int vitesseExecution;
-	private Cellules cellules;
+	private String cellules;
 	private int nombreDeTours;
 	
 	
-	public Simulation(String nom, Grille grille, int nombreDePasMax, int vitesseExecution, Cellules cellules,
+	public Simulation(int id,String nom, String grille, int nombrePasMax, int vitesseExecution, String cellules,
 			int nombreDeTours) {
 		super();
+		this.id = id;
 		this.nom = nom;
 		this.grille = grille;
-		this.nombreDePasMax = nombreDePasMax;
+		this.nombrePasMax = nombrePasMax;
 		this.vitesseExecution = vitesseExecution;
 		this.cellules = cellules;
 		this.nombreDeTours = nombreDeTours;
 	}
 
+	public int getId() {
+		return id;
+	}
 
 	public String getNom() {
 		return nom;
 	}
 
 
-	public Grille getGrille() {
+	public String getGrille() {
 		return grille;
 	}
 
 
-	public int getNombreDePasMax() {
-		return nombreDePasMax;
+	public int getNombrePasMax() {
+		return nombrePasMax;
 	}
 
 
@@ -42,7 +49,7 @@ public class Simulation {
 	}
 
 
-	public Cellules getCellules() {
+	public String getCellules() {
 		return cellules;
 	}
 
@@ -51,5 +58,16 @@ public class Simulation {
 		return nombreDeTours;
 	}
 	
+	
+	public void wantToSave(Simulation simulation, int id) {
+		SimulationDao simulationDao = new SimulationDao();
+		Simulation checkIfExist = simulationDao.findById(id);
+		if (checkIfExist.equals(null)) {
+			simulationDao.save(simulation);
+		}
+		else {
+			simulationDao.update(simulation, id);
+		}
+	}
 	
 }
