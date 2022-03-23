@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import javax.swing.JFrame;
+
 import model.Grille;
 import model.Simulation;
 import model.VitesseExecution;
@@ -12,19 +14,14 @@ import services.dao.Dao;
 import services.dao.GrilleDao;
 import services.dao.SimulationDao;
 import services.dao.VitesseExecutionDao;
+import ui.Initialisation;
 
 public class Launcher {
-	public static void main(String[] args) throws FileNotFoundException {
-		//test enregistrement string grille
-		GrilleDao grilleDao = new GrilleDao();
-		Grille testGrille = grilleDao.getFromNom("Grande");
-		System.out.println(testGrille.getTaille());
-		//creation de chaine "petite"
-		String chaineGrille = testGrille.creationChaine();
-		//affichage de la chainee
-		Fichier fichier = new Fichier();
-		String path = fichier.ecrireDansUnFichier(chaineGrille, "Premiere Simulation");
-		Simulation sim = new Simulation(3,"Premiere Simulation", 1000, "Rapide", path, 0, "Grande");
+	public static void main(String[] args){
+		JFrame content = new Initialisation();
+		content.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    content.setSize(1024, 768);
+	    content.setVisible(true);
 	}
 
 
