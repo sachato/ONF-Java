@@ -21,7 +21,7 @@ public class Launcher {
 		System.out.println(testGrille.getTaille());
 		//creation de chaine "petite"
 		String chaineGrille = testGrille.creationChaine();
-		//affichage de la chainee e ecdsqxsq	qszeer 
+		//affichage de la chainee
 		Fichier fichier = new Fichier();
 		String path = fichier.ecrireDansUnFichier(chaineGrille, "Premiere Simulation");
 		Simulation sim = new Simulation(3,"Premiere Simulation", 1000, "Rapide", path, 0, "Grande");
