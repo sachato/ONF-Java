@@ -2,6 +2,9 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -9,9 +12,10 @@ import javax.swing.JFrame;
 public class Navigation extends JFrame {
 	
 	public Navigation() {
-		super();
-		Elements();
 		
+		super("Jim Forest");
+		setResizable(false);
+		Elements();
 	}
 	
 	public void Elements() {
@@ -38,13 +42,13 @@ public class Navigation extends JFrame {
         
         // Design des éléments
         
-        simulation.setBackground(Color.decode("#007b27"));  
-        init.setBackground(Color.decode("#aec666"));
-        arbre.setBackground(Color.decode("#aec666"));
-        incendie.setBackground(Color.decode("#aec666"));
-        insecte.setBackground(Color.decode("#aec666"));
-        exporterCSV.setBackground(Color.decode("#37e56e"));
-        exporterBDD.setBackground(Color.decode("#37e56e"));
+        simulation.setBackground(Color.decode("#c0d681"));  
+        init.setBackground(Color.decode("#d7e5af"));
+        arbre.setBackground(Color.decode("#d7e5af"));
+        incendie.setBackground(Color.decode("#d7e5af"));
+        insecte.setBackground(Color.decode("#d7e5af"));
+        exporterCSV.setBackground(Color.decode("#c0d681"));
+        exporterBDD.setBackground(Color.decode("#c0d681"));
         
         // Position des éléments
         
