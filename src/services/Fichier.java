@@ -12,11 +12,17 @@ public class Fichier {
 		
 	}
 	
-	public String ecrireDansUnFichier(String json, String nom) throws FileNotFoundException {
+	public String ecrireDansUnFichier(String json, String nom){
 		String path = fileCreator(nom);
-		PrintWriter writer = new PrintWriter(path);
-		writer.println(json);
-		writer.close();
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter(path);
+			writer.println(json);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return path;
 	}
 	

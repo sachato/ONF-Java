@@ -1,5 +1,7 @@
 package main;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,9 +20,10 @@ import ui.Initialisation;
 
 public class Launcher {
 	public static void main(String[] args){
+		Dimension size = Toolkit. getDefaultToolkit(). getScreenSize();
 		JFrame content = new Initialisation();
 		content.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    content.setSize(1024, 768);
+	    content.setSize(size);
 	    content.setVisible(true);
 	    System.out.println("bien dans le luncher");
 	}
