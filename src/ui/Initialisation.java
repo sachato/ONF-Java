@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.BorderFactory;
@@ -20,7 +22,7 @@ import services.Fichier;
 import services.dao.GrilleDao;
 import services.dao.SimulationDao;
 
-public class Initialisation extends Navigation implements ActionListener{
+public class Initialisation extends Navigation implements ActionListener, ItemListener{
 	private JTextField pasField;
 	private String tailleGrille[] = { "Petite", "Moyenne", "Grande"};
     private String vitesseExecution[] = { "Lent", "Moyen", "Rapide"};
@@ -32,7 +34,9 @@ public class Initialisation extends Navigation implements ActionListener{
     private JTextField nomField;
     private JComboBox grilleField;
     private JComboBox vitesseField = new JComboBox(vitesseExecution);
-    private Grid grille;
+    private Grid grilleP;
+    private Grid grilleM;
+    private Grid grilleG;
     private JButton clear;
     private JButton envoyer;
     
@@ -62,7 +66,9 @@ public class Initialisation extends Navigation implements ActionListener{
 	    pasField = new JTextField(16);
 	    grilleField = new JComboBox(tailleGrille);
 	    vitesseField = new JComboBox(vitesseExecution);
-	    grille = new Grid();
+	    grilleP = new Grid(new Grille("Petite", "10x10"));
+	    grilleM = new Grid(new Grille("Moyenne", "50x50"));
+	    grilleG = new Grid(new Grille("Grande", "100x100"));
 	    clear = new JButton("Effacer les données");
         envoyer = new JButton("Envoyer");
 	    
@@ -96,9 +102,11 @@ public class Initialisation extends Navigation implements ActionListener{
 	    pasField.setLocation(150,220);
 	    labelVitesse.setLocation(40,270);
 	    vitesseField.setLocation(180,270);
-	    grille.setLocation(30,320);
-	    clear.setLocation(30,620);
-	    envoyer.setLocation(810,620);
+	    grilleP.setLocation(420,140);
+	    grilleM.setLocation(420,140);
+	    grilleG.setLocation(420,140);
+	    clear.setLocation(40,350);
+	    envoyer.setLocation(200,350);
 	    
 	    // & on les ajoute à la frame
 //	    add(button);
@@ -110,18 +118,55 @@ public class Initialisation extends Navigation implements ActionListener{
 	    add(pasField);
 	    add(grilleField);
 	    add(vitesseField);
-	    add(grille);
+	    add(grilleP);
+	    add(grilleM);
+	    add(grilleG);
 	    add(clear);
 	    add(envoyer);
 	    
+	    grilleP.setVisible(true);
+	    grilleM.setVisible(false);
+	    grilleG.setVisible(false);
+	    
+	    grilleField.addItemListener(this);
 	    envoyer.addActionListener(this);
 	    clear.addActionListener(this);
 	    
 	    
 	}
+
+	public void itemStateChanged(ItemEvent e) {
+	    if ((e.getStateChange() == ItemEvent.SELECTED)) {
+	       Object selection = grilleField.getSelectedItem();
+	       delGrille(selection);
+	    }
+	       
+	}
+	
+	
+	public void delGrille(Object selction) {
+		System.out.println("world");
+		if(selction.equals("Petite")) {
+			this.grilleP.setVisible(true);
+			this.grilleM.setVisible(false);
+			this.grilleG.setVisible(false);
+		}
+		if(selction.equals("Moyenne")) {
+			this.grilleP.setVisible(false);
+			this.grilleM.setVisible(true);
+			this.grilleG.setVisible(false);
+		}
+		if(selction.equals("Grande")) {
+			this.grilleP.setVisible(false);
+			this.grilleM.setVisible(false);
+			this.grilleG.setVisible(true);
+			
+		}
+	}
 	
 	public void actionPerformed(ActionEvent e)
     {
+		System.out.println(e.getSource());
 		if(e.getSource() == envoyer) {
 			GrilleDao grilleDao = new GrilleDao();
 			Grille grille = grilleDao.getFromNom(grilleField.getSelectedItem().toString());
