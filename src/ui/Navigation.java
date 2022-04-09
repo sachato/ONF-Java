@@ -5,11 +5,13 @@ import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Navigation extends JFrame {
+public class Navigation extends JFrame implements MouseListener{
 	
 	public Navigation() {
 		
@@ -69,5 +71,34 @@ public class Navigation extends JFrame {
 		add(arbre);
 		add(incendie);
 		add(insecte);
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("click");
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println("press");
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		System.out.println("release");
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		System.out.println("enter");
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		System.out.println("bye");
+		
 	}
 }

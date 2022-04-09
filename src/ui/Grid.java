@@ -32,4 +32,6 @@ public class Grid extends JPanel{
     public void grandeurCellules(int nbCell) {
     	this.tailleCell = this.size/nbCell;
     }
+    
+    
 }

@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 
 import javax.swing.BorderFactory;
@@ -22,7 +24,7 @@ import services.Fichier;
 import services.dao.GrilleDao;
 import services.dao.SimulationDao;
 
-public class Initialisation extends Navigation implements ActionListener, ItemListener{
+public class Initialisation extends Navigation implements ActionListener, ItemListener, MouseListener{
 	private JTextField pasField;
 	private String tailleGrille[] = { "Petite", "Moyenne", "Grande"};
     private String vitesseExecution[] = { "Lent", "Moyen", "Rapide"};
@@ -39,6 +41,7 @@ public class Initialisation extends Navigation implements ActionListener, ItemLi
     private Grid grilleG;
     private JButton clear;
     private JButton envoyer;
+    private String activeGrid;
     
 	
 	public Initialisation() {
@@ -128,6 +131,8 @@ public class Initialisation extends Navigation implements ActionListener, ItemLi
 	    grilleM.setVisible(false);
 	    grilleG.setVisible(false);
 	    
+	    activeGrid = "grilleP";
+	    
 	    grilleField.addItemListener(this);
 	    envoyer.addActionListener(this);
 	    clear.addActionListener(this);
@@ -150,16 +155,19 @@ public class Initialisation extends Navigation implements ActionListener, ItemLi
 			this.grilleP.setVisible(true);
 			this.grilleM.setVisible(false);
 			this.grilleG.setVisible(false);
+			activeGrid = "grilleP";
 		}
 		if(selction.equals("Moyenne")) {
 			this.grilleP.setVisible(false);
 			this.grilleM.setVisible(true);
 			this.grilleG.setVisible(false);
+			activeGrid = "grilleM";
 		}
 		if(selction.equals("Grande")) {
 			this.grilleP.setVisible(false);
 			this.grilleM.setVisible(false);
 			this.grilleG.setVisible(true);
+			activeGrid = "grilleG";
 			
 		}
 	}
@@ -183,16 +191,46 @@ public class Initialisation extends Navigation implements ActionListener, ItemLi
 			nomField.setText("");
 			vitesseField.setSelectedIndex(0);
 			grilleField.setSelectedIndex(0);
+		}	
+    }
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println("click");
+		if(activeGrid == "grilleP") {
+			if (this.grilleP.contains(e.getPoint())){
+		        System.out.println("petite");
+		    }
+		}
+		if(activeGrid == "grilleM") {
+			if (this.grilleM.contains(e.getPoint())){
+		        System.out.println("moyenne");
+		    }
+		}
+		if(activeGrid == "grilleG") {
+			if (this.grilleG.contains(e.getPoint())){
+		        System.out.println("Grande");
+		    }
 		}
 		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
-    }
-	
-//	public static void main (String[] args) {
-//		JFrame content = new Initialisation();
-//		content.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	    content.setSize(1024, 768);
-//	    content.setVisible(true);
-//	}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

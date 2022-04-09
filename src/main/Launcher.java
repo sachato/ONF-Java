@@ -25,6 +25,5 @@ public class Launcher {
 		content.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    content.setSize(size);
 	    content.setVisible(true);
-	    System.out.println("bien dans le luncher");
 	}
 }
