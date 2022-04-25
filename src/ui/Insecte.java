@@ -8,6 +8,7 @@ public class Insecte extends Navigation {
 	public Insecte() {
 		// Récupération des méthodes du constructeur parent (nav)
 		super();
+		setTitle("Insecte");
 		// Callback de la fonction de rajout de contenu
 		ajoutContenu();
 	}

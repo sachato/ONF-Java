@@ -25,6 +25,7 @@ public class Croissance extends Navigation  {
 	public Croissance() {
 		// Récupération des méthodes du constructeur parent (nav)
 		super();
+		setTitle("Croissance");
 		// Callback de la fonction de rajout de contenu
 		ajoutContenu();
 	}
