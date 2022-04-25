@@ -4,7 +4,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.Grille;
+
 public class Insecte extends Navigation {
+	
+    private Grid grilleM;
+    
 	public Insecte() {
 		// Récupération des méthodes du constructeur parent (nav)
 		super();
@@ -17,22 +22,12 @@ public class Insecte extends Navigation {
 		// Toujours utiliser setLayout et setVisible pour la frame
 	    setLayout(null);
 	    setVisible(true);
-	    
-//	     Création d'un élément (bouton & label)
-	    JButton button = new JButton("Bouton ajouté");
-	    JLabel label = new JLabel("Mon nouveau label");
-	    
-	    // Taille d'un élément (X,Y)
-	    button.setSize(150,40); 
-	    label.setSize(150,30);
-	    
-	    // Position des éléments (X,Y)
-	    button.setLocation(100,150);
-	    label.setLocation(200,110);
-	    
-	    // & on les ajoute à la frame
-	    add(button);
-	    add(label);
+
+	    grilleM = new Grid(new Grille("Moyenne", "25x25"));
+	    grilleM.setLocation(220,250);
+	    grilleM.setSize(1290,380);
+	    add(grilleM);
+	    grilleM.setVisible(true);
 	}
 	
 	public static void main (String[] args) {
