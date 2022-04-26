@@ -22,7 +22,7 @@ import ui.Initialisation;
 public class Launcher {
 	public static void main(String[] args){
 		Dimension size = Toolkit. getDefaultToolkit(). getScreenSize();
-		JFrame content = new Croissance();
+		JFrame content = new Initialisation();
 		content.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    content.setSize(size);
 	    content.setVisible(true);
